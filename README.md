@@ -6,7 +6,7 @@
 
 # IP Addr need to be modified.
 
-const ranN2Ipv4Addr string = "127.0.0.1"
-const amfN2Ipv4Addr string = "127.0.0.1"
-const ranN3Ipv4Addr string = "10.100.200.1"
-const upfN3Ipv4Addr string = "10.100.200.3"
+* const ranN2Ipv4Addr string = "127.0.0.1"
+* const amfN2Ipv4Addr string = "127.0.0.1"
+* const ranN3Ipv4Addr string = "10.100.200.1"
+* const upfN3Ipv4Addr string = "10.100.200.3"
