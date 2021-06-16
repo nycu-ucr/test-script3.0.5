@@ -254,7 +254,7 @@ func getPduSessionResourceSetupRequestTEID(message *ngapType.NGAPPDU) int64{
 		fmt.Println("pduSessionResourceSetupRequest is nil")
 		return -1
 	}
-	fmt.Println("LEN:",len(pduSessionResourceSetupRequest.ProtocolIEs.List))
+
 	for i := 0; i < len(pduSessionResourceSetupRequest.ProtocolIEs.List); i++ {
 		ie := pduSessionResourceSetupRequest.ProtocolIEs.List[i]
 		//fmt.Println("ie.id",ie.Id.Value)
@@ -524,7 +524,7 @@ func TestN2Handover(t *testing.T) {
 			ngapPdu, err := ngap.Decoder(_recvMsg[:n])
 			//get teid and map to ranuengapid
 			teid := getPduSessionResourceSetupRequestTEID(ngapPdu)
-			fmt.Println("teid: ",teid)
+
 			ranUeTeidNode1Map[int64(idx+1)] = teid
 			teidRanUeNode2Map[teid] = int64(idx+1)
 			assert.Nil(t, err)
