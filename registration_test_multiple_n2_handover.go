@@ -42,9 +42,9 @@ const amfN2Ipv4Addr string = "127.0.0.1"
 const ranN3Ipv4Addr string = "10.100.200.1"
 const upfN3Ipv4Addr string = "10.100.200.3"
 
-const GTPTEIDHEAD = 13
-const GTPTEIDTAIL = 16
-const NUM_UE = 1
+const GTPTEIDHEAD = 25//13
+const GTPTEIDTAIL = 28//16
+const NUM_UE = 2
 
 var EXIT_FLAG = true
 var ranUeTeidNode1Map = make(map[int64]int64)

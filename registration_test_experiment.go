@@ -1,15 +1,15 @@
 package test_test
 
 import (
-	"bytes"
+//	"bytes"
 
-	"encoding/binary"
-	"encoding/hex"
+//	"encoding/binary"
+//	"encoding/hex"
 	"fmt"
-	"net"
+//	"net"
 
-	"os/exec"
-	"strconv"
+//	"os/exec"
+//	"strconv"
 	"test"
 	"testing"
 	"time"
@@ -17,12 +17,12 @@ import (
 	"github.com/mohae/deepcopy"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"golang.org/x/net/icmp"
-	"golang.org/x/net/ipv4"
+//	"golang.org/x/net/icmp"
+//	"golang.org/x/net/ipv4"
 
 	// ausf_context "github.com/free5gc/ausf/context"
 	"github.com/free5gc/CommonConsumerTestData/UDM/TestGenAuthData"
-	"github.com/free5gc/milenage"
+//	"github.com/free5gc/milenage"
 	"github.com/free5gc/nas"
 	"github.com/free5gc/nas/nasMessage"
 	"github.com/free5gc/nas/nasTestpacket"
@@ -120,6 +120,10 @@ func TestRegistration(t *testing.T) {
 		nasMessage.RegistrationType5GSInitialRegistration, mobileIdentity5GS, nil, ueSecurityCapability, nil, nil, nil)
 	sendMsg, err = test.GetInitialUEMessage(ue.RanUeNgapId, registrationRequest, "")
 	assert.Nil(t, err)
+
+	fmt.Println("Start send Initial UE Message")
+	t1 := time.Now()
+
 	_, err = conn.Write(sendMsg)
 	assert.Nil(t, err)
 
@@ -193,7 +197,13 @@ func TestRegistration(t *testing.T) {
 	_, err = conn.Write(sendMsg)
 	assert.Nil(t, err)
 
+	t2 := time.Now()
+	fmt.Println("Finish Registration: ",t2.Sub(t1).Seconds())
+
 	time.Sleep(100 * time.Millisecond)
+
+	fmt.Println("Start to send PDU Req")
+	t3 := time.Now()
 	// send GetPduSessionEstablishmentRequest Msg
 
 	sNssai := models.Snssai{
@@ -222,6 +232,9 @@ func TestRegistration(t *testing.T) {
 	assert.Nil(t, err)
 	_, err = conn.Write(sendMsg)
 	assert.Nil(t, err)
+
+	t4 := time.Now()
+	fmt.Println("Finish PDU req: ",t4.Sub(t3).Seconds())
 
 	// wait 1s
 	time.Sleep(1 * time.Second)
