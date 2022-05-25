@@ -8,7 +8,7 @@ import (
 	"fmt"
 //	"net"
 
-//	"os/exec"
+	"os/exec"
 //	"strconv"
 	"test"
 	"testing"
@@ -239,7 +239,7 @@ func TestPaging(t *testing.T) {
 
 	// cmd := exec.Command("sudo", "ip", "netns", "exec", "UPFns", "bash", "-c", "echo -n 'hello' | nc -u -w1 60.60.0.1 8080")
 
-	cmd := exec.Command("python3", "remote-executor/python_client.py")
+	cmd := exec.Command("python3", "../../test-script3.0.5/python_client.py")
 	_, err = cmd.Output()
 	if err != nil {
 		fmt.Println(err)
